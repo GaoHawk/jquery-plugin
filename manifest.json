@@ -206,7 +206,9 @@
 				"resources": [
 					"css/index.css",
 					"image/len_std.jpg",
-					"js/jQuery-2.2.1.min.js"
+					"js/jQuery-2.2.1.min.js",
+					"css/font/font.css",
+					"font/FZKATJW.ttf"
 				],
 				"refer": [],
 				"priority": 0

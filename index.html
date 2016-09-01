@@ -75,7 +75,10 @@
   <div id="app">
     <div>
       <div class="wrapper">
-          <img src="image/len_std.jpg" alt="" class="lena flash">
+      	<div class="lena_box">
+      		<img src="image/len_std.jpg" alt="" class="lena flash">
+      	</div>
+          
       </div>
       <div>
         <label for="">Pinch</label>
@@ -90,10 +93,20 @@
   <!-- <script type="text/javascript" src='./bundle.js'></script> -->
   <script>
   var wrapper = document.getElementsByClassName("wrapper");
+  var appbody = document.getElementById("app");
+  console.log(appbody);
+  //图片元素
+  var lena = $(".lena_box");
+  console.log(lena);
   var global = {};
-  wrapper[0].addEventListener('touchstart',_onTouchStart, false);
-  wrapper[0].addEventListener('touchmove',_onTouchMove, false);
-  wrapper[0].addEventListener('touchend',_onTouchEnd, false);
+  global.angle = 0;
+//wrapper[0].addEventListener('touchstart',_onTouchStart, false);
+//wrapper[0].addEventListener('touchmove',_onTouchMove, false);
+//wrapper[0].addEventListener('touchend',_onTouchEnd, false);
+  
+	appbody.addEventListener('touchstart',_onTouchStart, false);
+  appbody.addEventListener('touchmove',_onTouchMove, false);
+  appbody.addEventListener('touchend',_onTouchEnd, false);
   // wrapper.on("touchmove",_onTouchMove);
   // wrapper.on("touchend",_onTouchEnd);
 
@@ -106,13 +119,35 @@
      return Math.sqrt(xLen*xLen + yLen*yLen);
   }
 
+	global._getRotateDirection = function(vec1,vec2){
+		return vec1.x*vec2.y - vec2.x*vec1.y;
+	}
+	global._getRotateAngle = function(vec1,vec2){
+		var direction =global._getRotateDirection(vec1,vec2);
+		direction = direction > 0? -1:1;
+		var len1 = global._getDistance(vec1.x,vec1.y);
+		var len2 = global._getDistance(vec2.x,vec2.y);
+		var mr = len1*len2;
+		if(mr === 0) return 0;
+		var dot = vec1.x*vec2.x + vec1.y*vec2.y;
+		var r = dot/mr;
+		if(r>1) r=1;
+		if(r<-1) r=-1;
+		return Math.acos(r)*direction*180/Math.PI;
+	}
+	
   function _onTouchStart(e){
 
     clearTimeout(global.longPressTimeout);
     // 去除上次添加的move属性
     global.moveX = null;
     global.moveY = null;
-
+//  touch结束去除pinch属性
+		global.previousPinchScale = undefined;
+		
+    global.startX = e.touches[0].pageX;
+    global.startY = e.touches[0].pageY;
+    console.log(global.startX + "," + global.startY);
     // console.log(e.changedTouches);
     if(e.touches.length > 1){
       var point1 = e.touches[0];
@@ -120,9 +155,14 @@
       console.log(point1.pageX);
       var xLen = Math.abs(point2.pageX - point1.pageX);
       var yLen = Math.abs(point2.pageY - point1.pageY);
-      alert(xLen + "," + yLen);
-          console.log(e.touches.length);
-      // global.touchDistance = global._getDistance(xLen,yLen);
+      console.log(xLen + "," + yLen);
+       
+      global.touchDistance = global._getDistance(xLen,yLen);
+      
+      global.touchVector = {
+      	x : point2.pageX - global.startX,
+      	y : point2.pageY - global.startY
+      };
     }else {
 	    if(global.startTime){
 	      //保存上一次touchstart
@@ -134,10 +174,8 @@
 	    }
 
 	    // console.log(e);
-	    global.startX = e.touches[0].pageX;
-	    global.startY = e.touches[0].pageY;
-	    console.log(global.startX + "," + global.startY);
-	    console.log(e.touches);
+
+//	    console.log(e.touches);
       //记录touch开始时间
       global.startTime = global._getTime();
 
@@ -162,16 +200,41 @@
   }
   function _onTouchMove(e){
 
-
     clearTimeout(global.longPressTimeout);
+    if(e.touches.length > 1){
+    	var xlen = Math.abs(e.touches[0].pageX - e.touches[1].pageX);
+    	var ylen = Math.abs(e.touches[1].pageY - e.touches[1].pageY);
+
+    	var touchDistance = global._getDistance(xlen,ylen);
+    	if(global.touchDistance){
+    		var pinchScale = touchDistance/ global.touchDistance;
+    		console.log(global.previousPinchScale);
+    		global._emitEvent("onPinch",{scale:pinchScale - (global.previousPinchScale!==undefined?global.previousPinchScale:0)});
+		 		console.log(pinchScale+","+global.previousPinchScale);
+    		global.previousPinchScale = pinchScale;
+   
+    	}
+    	if(global.touchVector){
+    		 var vector = {
+    		 	  x:e.touches[1].pageX - e.touches[0].pageX,
+    		 	  y:e.touches[1].pageY - e.touches[0].pageY
+    		 };
+    		 var angle = global._getRotateAngle(vector,global.touchVector);
+    		 global._emitEvent('onRotate',angle);
+    		 global.touchVector.x = vector.x;
+    		 global.touchVector.y = vector.y;
+    	}
+    }
+    
     // console.log(e);
     global.moveX = e.touches[0].pageX;
     global.moveY = e.touches[0].pageY;
     console.log(global.moveX + "," + global.moveY);
   }
   function _onTouchEnd(e){
-
+		
     clearTimeout(global.longPressTimeout);
+
     console.log(e);
     console.log(global);
     var timestamp = global._getTime();
@@ -183,8 +246,22 @@
       }
     }
   }
-  global._emitEvent = function(type){
+  global._emitEvent = function(type,data){
     console.log(type);
+    switch(type){
+    	case "onPinch":
+    		console.log(data.scale);
+    		var scale_tra = 1 + data.scale;
+    		console.log(scale_tra);
+//  		lena.css("transform","scale("+ scale_tra+")");
+    		break;
+    	case "onRotate":
+    		global.angle += data;
+				lena.css("transform","rotate("+ global.angle+"deg)");
+    		console.log(data);
+    		console.log(global.angle);
+    		break;
+    }
   }
   </script>
 </body>
