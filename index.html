@@ -100,6 +100,7 @@
   console.log(lena);
   var global = {};
   global.angle = 0;
+  global.scale = 1;
 //wrapper[0].addEventListener('touchstart',_onTouchStart, false);
 //wrapper[0].addEventListener('touchmove',_onTouchMove, false);
 //wrapper[0].addEventListener('touchend',_onTouchEnd, false);
@@ -143,7 +144,7 @@
     global.moveX = null;
     global.moveY = null;
 //  touch结束去除pinch属性
-		global.previousPinchScale = undefined;
+		global.previousPinchScale = 0;
 		
     global.startX = e.touches[0].pageX;
     global.startY = e.touches[0].pageY;
@@ -209,7 +210,7 @@
     	if(global.touchDistance){
     		var pinchScale = touchDistance/ global.touchDistance;
     		console.log(global.previousPinchScale);
-    		global._emitEvent("onPinch",{scale:pinchScale - (global.previousPinchScale!==undefined?global.previousPinchScale:0)});
+    		global._emitEvent("onPinch",{scale:pinchScale - global.previousPinchScale==0?pinchScale:global.previousPinchScale});
 		 		console.log(pinchScale+","+global.previousPinchScale);
     		global.previousPinchScale = pinchScale;
    
@@ -220,7 +221,7 @@
     		 	  y:e.touches[1].pageY - e.touches[0].pageY
     		 };
     		 var angle = global._getRotateAngle(vector,global.touchVector);
-    		 global._emitEvent('onRotate',angle);
+//  		 global._emitEvent('onRotate',angle);
     		 global.touchVector.x = vector.x;
     		 global.touchVector.y = vector.y;
     	}
@@ -251,13 +252,14 @@
     switch(type){
     	case "onPinch":
     		console.log(data.scale);
-    		var scale_tra = 1 + data.scale;
-    		console.log(scale_tra);
-//  		lena.css("transform","scale("+ scale_tra+")");
+//  		var scale_tra = 1 + data.scale;
+    		global.scale += data.scale; 
+    		console.log(global.scale);
+    		lena.css("transform","scale("+ global.scale +")");
     		break;
     	case "onRotate":
     		global.angle += data;
-				lena.css("transform","rotate("+ global.angle+"deg)");
+//				lena.css("transform","rotate("+ global.angle+"deg)");
     		console.log(data);
     		console.log(global.angle);
     		break;
