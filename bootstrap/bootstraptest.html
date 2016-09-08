@@ -5,9 +5,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="js/bootstrap/css/font-css/font-awesome.css">
         <script src="js/jQuery-2.2.1.min.js"></script>
         <script src="js/bootstrap/js/bootstrap.min.js" ></script>
-
+        <style>
+            .custom-box{
+              border:1px solid #666;
+              margin-top: 21px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -15,8 +21,8 @@
             <div class="col-md-12 column">
               <div class="alert alert-success alert-dismissable">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4>
-                  注意!
+                <h4 style="display: inline-block;width: 23px;line-height: 24px;">
+                  消息
                 </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
               </div>
               <div class="tabbable" id="tabs-505134">
@@ -28,15 +34,17 @@
                      <a href="#" data-toggle="tab">Section 2</a>
                   </li>
                 </ul>
-                <a type="button" class="btn btn-default" style="position:relative;bottom:16px;">按钮</a>
+                <a type="button" class="btn btn-default" style="position:relative;bottom:16px;border:dashed 1px #666;color:#949494"><i class="icon-plus"></i>按钮</a>
               </div> <span class="label label-default">标签</span>
+              <div style="width:100%;height:1.5px;margin-top:9px;padding:0px;background-color:#2cfffd;overflow:hidden;"></div>
               <div class="row clearfix">
-                <div class="col-md-8 column">
-                  <h3>
+                <div class="col-md-8 column " style="height:375px;">
+                  <div class="custom-box">
+                  <h3 style="display:inline-block;">
                     h3. 这是一套可视化布局系统.
                   </h3>
-                  <div class="btn-group btn-group-sm">
-                     <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-left"></em> 左</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-center"></em> 中</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-right"></em> 右</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-justify"></em> 全</button>
+                  <div class="btn-group btn-group-sm" style="float:right;margin-top:20px;">
+                     <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-left"></em> 左</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-center"></em> 中</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-right"></em> 右</button>
                   </div>
                   <table class="table">
                     <thead>
@@ -127,13 +135,15 @@
                         </td>
                       </tr>
                     </tbody>
-                  </table> <button type="button" class="btn btn-default">按钮</button>
+                  </table> <button type="button" class="btn btn-default" style="position:relative;left:78%;margin-bottom:15px;">按钮</button>
                 </div>
-                <div class="col-md-4 column">
-                  <h3>
-                    h3. 这是一套可视化布局系统.
+              </div>
+                <div class="col-md-4 column" style="height:375px;">
+                  <div class="custom-box">
+                  <h3 style="color:blue;border-bottom:1px solid grey;padding-left:10px;padding-bottom:10px;">
+                    Tips
                   </h3>
-                  <ol>
+                  <ol style="line-height:23px;">
                     <li>
                       Lorem ipsum dolor sit amet
                     </li>
@@ -160,7 +170,10 @@
                     </li>
                   </ol>
                 </div>
-              </div> <span class="label label-default">标签</span> <a id="modal-626929" href="#modal-container-626929" role="button" class="btn" data-toggle="modal">触发遮罩窗体</a>
+              </div>
+              </div> <span class="label label-default">标签</span>
+              <div style="width:100%;height:1.5px;margin-top:9px;margin-bottom:15px;padding:0px;background-color:#2cfffd;overflow:hidden;"></div>
+              <a id="modal-626929" href="#modal-container-626929" role="button" class="btn" data-toggle="modal">触发遮罩窗体</a>
               <div class="modal fade" id="modal-container-626929" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -178,7 +191,7 @@
                     </div>
                   </div>
                 </div>
-              </div> <button type="button" class="btn btn-default">按钮</button>
+              </div>
               <table class="table">
                 <thead>
                   <tr>
