@@ -1,18 +1,17 @@
 /*
 * @Author: Administrator
-* @Date:   2016-09-09 10:01:27
+* @Date:   2016-09-09 15:52:56
 * @Last Modified by:   Administrator
-* @Last Modified time: 2016-09-09 15:33:40
+* @Last Modified time: 2016-09-09 16:35:29
 */
 
 'use strict';
-//  MultiPoint.js
+//  Hello Triangle.js
 //  顶点着色器程序
 var VSHADER_SOURCE =
     'attribute vec4 a_Position;\n' +
     'void main() {\n' +
     ' gl_Position = a_Position;\n' + // 设置坐标
-    ' gl_PointSize = 10.0;\n' +   // 设置尺寸
     '}\n';
 
  // 片元着色器程序
@@ -64,7 +63,7 @@ function main(){
 
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  gl.drawArrays(gl.POINTS,0 ,n);
+  gl.drawArrays(gl.LINE_LOOP,0 ,n);
 }
 var g_points = [];
 var g_colors = [];
@@ -124,4 +123,3 @@ var g_colors = [];
 
      return n;
   }
-
