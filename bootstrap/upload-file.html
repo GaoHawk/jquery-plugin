@@ -256,6 +256,7 @@
       }
 
       global_var = inner;
+
       var str = input.attr('placeholder');
       var booln = str=="输入网址"?true:false;
 
@@ -276,6 +277,12 @@
               input.popover("hide");
               clearTimeout(t);
             }, 1800);
+          }else{
+            // url_input.attr('data-content', '网址不能为空或格式不正确');
+            // var div_pop = url.find("div.popover");
+            // console.log(div_pop);
+            // div_pop.addClass('in');
+            // 插件冲突有bug ，需要自行定义一个提示框，或者检查代码的冲突
           }
 
         }else{
@@ -301,11 +308,12 @@
               if(!div.hasClass('has-error')){
                 input.attr('data-content', '以http://或https://开头输入网址');
                 input.popover("show");
-                var t = setTimeout(function(){
-                  div.removeClass('has-error');
-                  input.popover("hide");
-                  clearTimeout(t);
-                }, 2500);
+                // var div_pop = url.find("div.popover");
+                // var t = setTimeout(function(){
+                //   div.removeClass('has-error');
+                //   input.popover("hide");
+                //   clearTimeout(t);
+                // }, 2500);
               }
             }else{
               // input.popover("hide");
