@@ -21,6 +21,8 @@
           .lessons_file {
             height: 48px;
             background: #eee;
+            margin-left: 2%;
+            width: 96%;
           }
           .lessons_file div.bgIcon{
             color:#fff;
@@ -32,7 +34,7 @@
              background-color: red;
              text-align: center;
              margin-top: 7px;
-             margin-left:2.8%;
+             margin-left:1.5%;
              float:left;
           }
           .lessons_file a{
@@ -74,7 +76,61 @@
     <div class="content-area">
     <div class="row clearfix">
       <div class="col-md-12 column" style="margin:7px 10px;padding:5px 15px;">
-        <button type="button" class="btn btn-default btn-warning" style="" onclick="selectFile();">导入课件</button>
+
+   <!-- 按钮触发模态框 -->
+   <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin-left:2%;">导入课件</button>
+   <!-- 模态框（Modal） -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog" style="margin-top:13%;width:450px;">
+           <div class="modal-content">
+               <div class="modal-header" style="box-shadow:0px 2px 3px 0px #666;background:#e4e4e4;border-radius:6px 6px 0 0;padding:10px;">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title" id="myModalLabel" style="text-align:center;">课件上传</h4>
+               </div>
+               <div class="modal-body">
+                 <form role="form">
+                   <div class="form-group">
+                     <label for="name">科目</label>
+                     <select class="form-control" id="project" style="display:inline-block;width:85%;margin-left:6%;">
+                        <option>语文</option>
+                        <option>数学</option>
+                        <option>英语</option>
+                        <option>物理</option>
+                        <option>化学</option>
+                      </select>
+                   </div>
+                   <div class="checkbox" id="type">
+                     <label class="checkbox-inline" style="left:9%;">
+                       <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked>上传文档
+                     </label>
+                     <label class="checkbox-inline" style="left:14%;">
+                       <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2">收藏网页
+                     </label>
+                   </div>
+                   <div class="form-group" id="file">
+                     <label for="inputfile">附件</label>
+                     <input type="file" id="inputfile" style="display:inline-block;margin-left:6%;">
+                     <p class="help-block" style="padding-left:14%;">请选择文档文件</p>
+                   </div>
+                   <div class="form-group" id="Url">
+                   <label for="name">网址</label>
+                       <input type="text"  class="form-control" placeholder="输入网址" style="display:inline-block;margin-left:6%;width:85%;" data-toggle="popover" data-placement="top" data-content="以http://或https://开头输入网址" data-trigger="focus">
+                   </div>
+                   <div class="form-group">
+                   <label for="name">标题</label>
+                       <input type="text" id="title" class="form-control" placeholder="输入标题" style="display:inline-block;margin-left:6%;width:85%;" data-placement="bottom" data-content="标题不能为空" >
+                   </div>
+
+                 </form>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-default" data-dismiss="modal" style="position:relative;right:38%;">关闭</button>
+                   <button type="submit" class="btn btn-default" style="position:relative;right:35%;" onclick="submit_form();">提交</button>
+<!--                    <button type="button" class="btn btn-primary">提交更改</button> -->
+               </div>
+           </div><!-- /.modal-content -->
+       </div><!-- /.modal -->
+   </div>
          <button type="button" class="btn btn-default btn-link btn-sm" style="float:right;margin-right:25px;">删除</button>
         <ul class="list-unstyled" style="margin-top:16px;">
           <li class="lessons_file">
@@ -89,7 +145,7 @@
                 <input type="checkbox">
               </label>
             </span>
-            <div style="width:87%;height:.8px;margin-top:9px;margin-left:11%;padding:0px;background-color:#b7b7b7;overflow:hidden;"></div>
+            <div style="width:94%;height:.8px;margin-left:6%;padding:0px;background-color:#b7b7b7;overflow:hidden;position:relative;bottom:5px;"></div>
           </li>
           <li>
             Consectetur adipiscing elit
@@ -117,16 +173,226 @@
     </div>
     </div>
     <script>
-      function selectFile(){
-        // var Shell = new ActiveXObject("Shell.Application");
-        // console.log(Shell);
-        // var objSrc = new ActiveXObject("Shell Application").BrowseForFolder(0,'请选择文件目录',0,'');
-        // if(objSrc!=null){
-        //   var choosePath = objSrc.Items().Item().Path;
-        //   console.log(choosePath);
-        // }
+    $(function () {
+      $("[data-toggle='popover']").popover();
 
+
+    });
+    var form={
+
+    };
+    var file = $("#inputfile");
+    var file_lab = $("#file");
+    var project = $("#project");
+    var type = $("#type input:checked");
+    var checkbox = $(".checkbox input");
+    var url = $("#Url");
+    var url_input = url.find("input");
+    console.log(url_input);
+    checkbox.on("click",function(){
+      var option = $(this).attr("value");
+      if(option == "option1"){
+        url.hide();
+        file_lab.show();
+      }else{
+        url.show();
+        file_lab.hide();
       }
+    });
+
+    url.hide();
+    var title = $("#title");
+    var title_div = title.parent();
+    console.log(title_div);
+    title.blur(function(){
+      // var text = title[0].value;
+      // console.log(text);
+      // if(text.length <=0){
+
+      //  title_div.addClass('has-warning');
+
+      //  title.popover('show');
+      // }else{
+      //   title.popover("hide");
+      // }
+    });
+    title.focus(function(event) {
+       // title_div.removeClass('has-warning');
+       // var bl = title_div.hasClass('has-error');
+
+       // console.log(bl);
+       // if(bl){
+       //    title.popover("show");
+       //    setTimeout("clearError()", 2500);
+       // }else{
+       //    title.popover("hide");
+       // }
+
+       // event.preventDefault();
+    });
+    title.on('show.bs.popover', function () {
+       var bl = title_div.hasClass('has-warning');
+       var bl_e = title_div.hasClass('has-error');
+       // console.log(bl);
+       if(!bl && !bl_e){
+           return false;
+          title.popover("hide");
+       }
+    });
+    var global_var;
+    Form_Validation(title_div,title);
+    Form_Validation(url,url_input);
+
+
+
+    function Form_Validation(div,input){
+
+      var obj_va = {
+          "div" : div,
+          "input": input
+      }
+      function inner(){
+         return obj_va;
+      }
+
+      global_var = inner;
+      var str = input.attr('placeholder');
+      var booln = str=="输入网址"?true:false;
+
+
+
+      input.blur(function(){
+        var text = input[0].value;
+        console.log(text);
+        if(text.length <=0 ){
+
+          div.addClass('has-warning');
+          if(!booln){
+            // input.attr('data-content', '不能为空');
+            input.popover('show');
+
+            var t = setTimeout(function(){
+              div.removeClass('has-error');
+              input.popover("hide");
+              clearTimeout(t);
+            }, 1800);
+          }
+
+        }else{
+          input.popover("hide");
+        }
+      });
+
+      input.focus(function(event) {
+         div.removeClass('has-warning');
+         var bl = div.hasClass('has-error');
+
+
+         console.log(input.attr('placeholder'));
+         if(bl){
+            input.popover("show");
+            var t = setTimeout(function(){
+              div.removeClass('has-error');
+              input.popover("hide");
+              clearTimeout(t);
+            }, 2500);
+         }else{
+            if(booln){
+              if(!div.hasClass('has-error')){
+                input.attr('data-content', '以http://或https://开头输入网址');
+                input.popover("show");
+                var t = setTimeout(function(){
+                  div.removeClass('has-error');
+                  input.popover("hide");
+                  clearTimeout(t);
+                }, 2500);
+              }
+            }else{
+              // input.popover("hide");
+            }
+
+         }
+
+         event.preventDefault();
+      });
+
+      input.on('show.bs.popover', function () {
+         var bl = div.hasClass('has-warning');
+         var bl_e = div.hasClass('has-error');
+         // console.log(bl);
+         if(!bl && !bl_e && !input.attr('placeholder') == "输入网址"){
+             return false;
+            input.popover("hide");
+         }else{
+
+         }
+      });
+
+    }
+
+    function clearError(){
+      // var div = global_var().div;
+      // var input = global_var().input;
+      // console.log(div);
+      // div.removeClass('has-error');
+      // input.popover("hide");
+      // clearTimeout(clearError);
+    }
+
+    function submit_form(){
+      var bool = false;
+      var url_check = url.find("input")[0].value;
+      console.log(url.find("input"));
+      if(url){
+        bool = cl_url(url_check);
+      };
+
+      if(bool){
+        form.url = url_check;
+      }
+      // console.log(title[0].value);
+      form.project = project[0].value;
+      form.type = type[0].value
+      // console.log(file);
+      form.file = file[0].files[0];
+      form.title = title[0].value;
+      console.log(form);
+      if(!form.title){
+        title_div.addClass('has-error');
+        // title.focus();
+      }
+
+      if(!form.url){
+        url_input.attr('data-content', '网址不能为空或格式不正确');
+        url.addClass('has-error');
+        url_input.focus();
+      }else{
+        title.focus();
+      }
+
+
+    }
+    window.cl_url = function(str){
+      var reg = "^((https|http|ftp|rtsp|mms)?://)"
+        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
+        + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
+        + "|" // 允许IP和DOMAIN（域名）
+        + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
+        + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
+        + "[a-z]{2,6})" // first level domain- .com or .museum
+        + "(:[0-9]{1,4})?" // 端口- :80
+        + "((/?)|" // a slash isn't required if there is no file name
+        + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+      var re = new RegExp(reg);
+      if(re.test(str)){
+        console.log("true");
+        return true;
+      }else{
+        console.log("false");
+        return false;
+      }
+    }
+
     </script>
     </body>
 </html>
