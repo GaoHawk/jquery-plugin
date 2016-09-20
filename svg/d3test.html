@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>绘制矩形</title>
+    </head>
+    <body>
+    <div class="chart"></div>
+    <script src="d3/d3.js" charset="utf-8">
+    </script>
+    <script>
+ var p = d3.select("body")
+   .selectAll("p")
+   .data([4, 8, 15, 16, 23, 42])
+     .text(function(d) { return d; });
+
+     p.enter().append("p")
+         .text(function(d) { return d; });
+
+     p.exit().remove();
+     d3.select("body").transition()
+         .style("background-color", "black");
+     d3.selectAll("bdoy").transition()
+     .duration(750)
+     .delay(function(d,i){return i*10; })
+     .attr("r",function(d){return Math.sqrt(d*scale);});
+    </script>
+    </body>
+</html>
