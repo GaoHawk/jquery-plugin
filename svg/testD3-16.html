@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+    </head>
+    <body>
+      <buttom>单击更新</buttom>
+      <br>
+      <p>单击添加</p>
+      <br>
+      <a href="">单击删除</a>
+      <br>
+      <script>
+      var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+                      11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+
+      var w = 600;
+      var h =250;
+      var barPadding = 1;
+
+      var xScale = d3.scale.ordinal()
+                        .domain(d3.range(dataset.length))
+                        .rangeRoundBands([0,w],0.05);
+      var yScale = d3.scale.linear()
+                        .domain([0,d3.max(dataset)])
+                        .range([0,h]);
+      var svg = d3.select("body")
+                      .append("svg")
+                      .attr("width",w)
+                      .attr("height",h);
+
+
+      </script>
+    </body>
+</html>
