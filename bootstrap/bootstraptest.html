@@ -6,284 +6,154 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="js/bootstrap/css/font-css/font-awesome.css">
+        <!-- Le styles -->
+        <link href="http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <!-- <link href="css/docs.css" rel="stylesheet"> -->
+        <link href="http://cdn.bootcss.com/prettify/r224/prettify.css" rel="stylesheet">
+        <link href="bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/docs.css">
+        <link rel="stylesheet" href="css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href="bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.css">
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css">
         <script src="js/jQuery-2.2.1.min.js"></script>
         <script src="js/bootstrap/js/bootstrap.min.js" ></script>
+        <script src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/bootstrap-datepicker.zh-CN.js"></script>
+        <script src="bootstrap-switch-master/dist/js/bootstrap-switch.js"></script>
+        <script src="js/layer.js"></script>
+        <link rel="stylesheet" href="css/layer.css">
         <style>
             .custom-box{
               border:1px solid #666;
               margin-top: 21px;
             }
+                    .span4, h1 {
+                        text-align: center;
+                    }
+
+                    h1 {
+                        margin-bottom: 20px;
+                    }
+
+                    h3 {
+                        margin-top: 20px;
+                    }
+
+                    /* Bootstrap code examples
+            -------------------------------------------------- */
+
+            /* Base class */
+            .bs-docs-example {
+              position: relative;
+              margin: 15px 0;
+              padding: 39px 19px 14px;
+              *padding-top: 19px;
+              background-color: #fff;
+              border: 1px solid #ddd;
+              -webkit-border-radius: 4px;
+                 -moz-border-radius: 4px;
+                      border-radius: 4px;
+            }
+
+            /* Echo out a label for the example */
+            .bs-docs-example:after {
+              content: "Example";
+              position: absolute;
+              top: -1px;
+              left: -1px;
+              padding: 3px 7px;
+              font-size: 12px;
+              font-weight: bold;
+              background-color: #f5f5f5;
+              border: 1px solid #ddd;
+              color: #9da0a4;
+              -webkit-border-radius: 4px 0 4px 0;
+                 -moz-border-radius: 4px 0 4px 0;
+                      border-radius: 4px 0 4px 0;
+            }
+
+            /* Remove spacing between an example and it's code */
+            .bs-docs-example + .prettyprint {
+              margin-top: -20px;
+              padding-top: 15px;
+            }
         </style>
     </head>
     <body>
-        <div class="container">
-          <div class="row clearfix">
-            <div class="col-md-12 column">
-              <div class="alert alert-success alert-dismissable">
-                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4 style="display: inline-block;width: 23px;line-height: 24px;">
-                  消息
-                </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
-              </div>
-              <div class="tabbable" id="tabs-505134">
-                <ul class="nav nav-pills" style="display:inline-block;margin-right:97px;">
-                  <li>
-                     <a href="#" data-toggle="tab">Section 1</a>
-                  </li>
-                  <li class="active">
-                     <a href="#" data-toggle="tab">Section 2</a>
-                  </li>
-                </ul>
-                <a type="button" class="btn btn-default" style="position:relative;bottom:16px;border:dashed 1px #666;color:#949494"><i class="icon-plus"></i>按钮</a>
-              </div> <span class="label label-default">标签</span>
-              <div style="width:100%;height:1.5px;margin-top:9px;padding:0px;background-color:#2cfffd;overflow:hidden;"></div>
-              <div class="row clearfix">
-                <div class="col-md-8 column " style="height:375px;">
-                  <div class="custom-box">
-                  <h3 style="display:inline-block;">
-                    h3. 这是一套可视化布局系统.
-                  </h3>
-                  <div class="btn-group btn-group-sm" style="float:right;margin-top:20px;">
-                     <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-left"></em> 左</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-center"></em> 中</button> <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-right"></em> 右</button>
-                  </div>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>
-                          编号
-                        </th>
-                        <th>
-                          产品
-                        </th>
-                        <th>
-                          交付时间
-                        </th>
-                        <th>
-                          状态
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          1
-                        </td>
-                        <td>
-                          TB - Monthly
-                        </td>
-                        <td>
-                          01/04/2012
-                        </td>
-                        <td>
-                          Default
-                        </td>
-                      </tr>
-                      <tr class="success">
-                        <td>
-                          1
-                        </td>
-                        <td>
-                          TB - Monthly
-                        </td>
-                        <td>
-                          01/04/2012
-                        </td>
-                        <td>
-                          Approved
-                        </td>
-                      </tr>
-                      <tr class="error">
-                        <td>
-                          2
-                        </td>
-                        <td>
-                          TB - Monthly
-                        </td>
-                        <td>
-                          02/04/2012
-                        </td>
-                        <td>
-                          Declined
-                        </td>
-                      </tr>
-                      <tr class="warning">
-                        <td>
-                          3
-                        </td>
-                        <td>
-                          TB - Monthly
-                        </td>
-                        <td>
-                          03/04/2012
-                        </td>
-                        <td>
-                          Pending
-                        </td>
-                      </tr>
-                      <tr class="info">
-                        <td>
-                          4
-                        </td>
-                        <td>
-                          TB - Monthly
-                        </td>
-                        <td>
-                          04/04/2012
-                        </td>
-                        <td>
-                          Call in to confirm
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table> <button type="button" class="btn btn-default" style="position:relative;left:78%;margin-bottom:15px;">按钮</button>
-                </div>
-              </div>
-                <div class="col-md-4 column" style="height:375px;">
-                  <div class="custom-box">
-                  <h3 style="color:blue;border-bottom:1px solid grey;padding-left:10px;padding-bottom:10px;">
-                    Tips
-                  </h3>
-                  <ol style="line-height:23px;">
-                    <li>
-                      Lorem ipsum dolor sit amet
-                    </li>
-                    <li>
-                      Consectetur adipiscing elit
-                    </li>
-                    <li>
-                      Integer molestie lorem at massa
-                    </li>
-                    <li>
-                      Facilisis in pretium nisl aliquet
-                    </li>
-                    <li>
-                      Nulla volutpat aliquam velit
-                    </li>
-                    <li>
-                      Faucibus porta lacus fringilla vel
-                    </li>
-                    <li>
-                      Aenean sit amet erat nunc
-                    </li>
-                    <li>
-                      Eget porttitor lorem
-                    </li>
-                  </ol>
-                </div>
-              </div>
-              </div> <span class="label label-default">标签</span>
-              <div style="width:100%;height:1.5px;margin-top:9px;margin-bottom:15px;padding:0px;background-color:#2cfffd;overflow:hidden;"></div>
-              <a id="modal-626929" href="#modal-container-626929" role="button" class="btn" data-toggle="modal">触发遮罩窗体</a>
-              <div class="modal fade" id="modal-container-626929" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h4 class="modal-title" id="myModalLabel">
-                        标题
-                      </h4>
-                    </div>
-                    <div class="modal-body">
-                      内容...
-                    </div>
-                    <div class="modal-footer">
-                       <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>
-                      编号
-                    </th>
-                    <th>
-                      产品
-                    </th>
-                    <th>
-                      交付时间
-                    </th>
-                    <th>
-                      状态
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      TB - Monthly
-                    </td>
-                    <td>
-                      01/04/2012
-                    </td>
-                    <td>
-                      Default
-                    </td>
-                  </tr>
-                  <tr class="success">
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      TB - Monthly
-                    </td>
-                    <td>
-                      01/04/2012
-                    </td>
-                    <td>
-                      Approved
-                    </td>
-                  </tr>
-                  <tr class="error">
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      TB - Monthly
-                    </td>
-                    <td>
-                      02/04/2012
-                    </td>
-                    <td>
-                      Declined
-                    </td>
-                  </tr>
-                  <tr class="warning">
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      TB - Monthly
-                    </td>
-                    <td>
-                      03/04/2012
-                    </td>
-                    <td>
-                      Pending
-                    </td>
-                  </tr>
-                  <tr class="info">
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      TB - Monthly
-                    </td>
-                    <td>
-                      04/04/2012
-                    </td>
-                    <td>
-                      Call in to confirm
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+<!--         <div class="container">
+           <div class="input-append date form_datetime" data-date="2012-12-21T15:25:00Z">
+               <input size="20" type="text" value="" readonly>
+               <span class="add-on"><i class="icon-remove"></i></span>
+               <span class="add-on"><i class="icon-th"></i></span>
+           </div>
+        </div> -->
+        <input type="text" class="datepicker" placeholder="请选择日期" />
+
+     <select class="form-control" >
+       <option>1</option>
+       <option>2</option>
+       <option>3</option>
+       <option>4</option>
+       <option>5</option>
+     </select>
+
+     <a class="layui-btn layui-btn-primary" href="javascript:;">页面层</a>
+
+     <!-- <input name="status" type="checkbox" data-size="small"> -->
+     <script>
+        var html =         '<input type="text" class="datepicker" placeholder="请选择日期" />' +
+
+     '<select class="form-control" >' +
+       '<option>1</option>' +
+       '<option>2</option>' +
+       '<option>3</option>' +
+       '<option>4</option>' +
+       '<option>5</option>' +
+     '</select>';
+        layer.ready(function(){
+          $(".layui-btn").on('click',function(){
+            layer.open({
+              btn: ['重要','奇葩'],
+              type: 1,
+              skin: 'layui-layer-rim', //加上边框
+              area: ['450px', '360px'], //宽高
+              content: html
+            });
+          })
+          $(function () {
+              $(".datepicker").datepicker({
+                  language: "zh-CN",
+                  autoclose: true,//选中之后自动隐藏日期选择框
+                  clearBtn: true,//清除按钮
+                  format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+              });
+          });
+        });
+
+
+
+         $(".form_datetime").datetimepicker({
+              format: "yyyy-mm-dd - hh:ii",
+              autoclose: true,
+              todayBtn: true
+          });
+         $('[name="status"]').bootstrapSwitch({
+                 onText:"历史",
+                 offText:"实时",
+                 onColor:"success",
+                 offColor:"info",
+                 size:"small",
+                 onSwitchChange:function(event,state){
+                     if(state==true){
+                         $(this).val("1");
+                     }else{
+                         $(this).val("2");
+                     }
+                 }
+             })
+
+     </script>
     </body>
 </html>
